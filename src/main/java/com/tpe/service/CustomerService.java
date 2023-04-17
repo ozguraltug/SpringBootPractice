@@ -11,12 +11,14 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
-    public void saveCustomer(Customer customer) {
-boolean isExistCustomer=customerRepository.existByEmail(customer.getEmail());
-if(isExistCustomer){
-   throw new ConflictException("Customer already exists by  "+customer.getEmail());
-}
-customerRepository.save(customer);
 
-    }
+
+   public void saveCustomer(Customer customer) {
+        boolean isExistCustomer=customerRepository.existsByEmail(customer.getEmail());
+       if(isExistCustomer){
+           throw new ConflictException("Customer already exists by  "+customer.getEmail());
+       }
+      customerRepository.save(customer);
+
+   }
 }
