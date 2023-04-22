@@ -1,6 +1,7 @@
 package com.tpe.service;
 
 import com.tpe.domain.Customer;
+import com.tpe.dto.CustomerDTO;
 import com.tpe.exception.ConflictException;
 import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.repository.CustomerRepository;
@@ -38,5 +39,16 @@ public class CustomerService {
     public void deleteCustomerById(Long id){
         Customer customer = getCustomerById(id);
        customerRepository.delete(customer);
+    }
+
+    public CustomerDTO getCustomerDTOById(Long id) {
+        Customer customer=getCustomerById(id);
+//        CustomerDTO customerDTO=new CustomerDTO();
+//        customerDTO.setName(customer.getName());
+//        customerDTO.setLastName(customerDTO.getLastName());
+//        customerDTO.setEmail(customerDTO.getEmail());
+//        customerDTO.setPhone(customerDTO.getPhone());
+       CustomerDTO customerDTO=new CustomerDTO(customer);
+return customerDTO;
     }
 }

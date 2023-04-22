@@ -1,6 +1,7 @@
 package com.tpe.controller;
 
 import com.tpe.domain.Customer;
+import com.tpe.dto.CustomerDTO;
 import com.tpe.service.CustomerService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -49,9 +50,9 @@ public class CustomerController {
     //ODEV2:id ile customer getirme->http://localhost:8080/customers/Custom?id=1
 
     @GetMapping("/custom")
-    public ResponseEntity<Customer> getCustomerById2(@RequestParam("id") Long id) {
-        Customer customer=customerService.getCustomerById(id);
-        return ResponseEntity.ok(customer);
+    public ResponseEntity<CustomerDTO> getCustomerDTOById2(@RequestParam("id") Long id) {
+        CustomerDTO customerDTO=customerService.getCustomerDTOById(id);
+        return ResponseEntity.ok(customerDTO);
     }
     //ODEV2:id ile customer silme->http://localhost:8080/customers/custom?id=1
     //Customer is deleted successfully mesajı dönsün
