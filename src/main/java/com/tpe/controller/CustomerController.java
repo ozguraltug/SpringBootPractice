@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/customers")
+@RequestMapping("/customers")
 
 public class CustomerController {
     @Autowired
@@ -43,5 +43,22 @@ public class CustomerController {
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         Customer customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
+    }
+
+
+    //ODEV2:id ile customer getirme->http://localhost:8080/customers/Custom?id=1
+
+    @GetMapping("/custom")
+    public ResponseEntity<Customer> getCustomerById2(@RequestParam("id") Long id) {
+        Customer customer=customerService.getCustomerById(id);
+        return ResponseEntity.ok(customer);
+    }
+    //ODEV2:id ile customer silme->http://localhost:8080/customers/custom?id=1
+    //Customer is deleted successfully mesajı dönsün
+
+    @DeleteMapping("/custom")
+    public ResponseEntity<String> deleteCustomerById (@RequestParam("id") Long id){
+        customerService.deleteCustomerById(id);
+        return ResponseEntity.ok("Customer is deleted successfully");
     }
 }
