@@ -6,7 +6,10 @@ import com.tpe.exception.ConflictException;
 import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -36,29 +39,29 @@ public class CustomerService {
         return customer;
     }
 
-    public void deleteCustomerById(Long id){
+    public void deleteCustomerById(Long id) {
         Customer customer = getCustomerById(id);
-       customerRepository.delete(customer);
+        customerRepository.delete(customer);
     }
 
     public CustomerDTO getCustomerDTOById(Long id) {
-        Customer customer=getCustomerById(id);
+        Customer customer = getCustomerById(id);
 //        CustomerDTO customerDTO=new CustomerDTO();
 //        customerDTO.setName(customer.getName());
 //        customerDTO.setLastName(customerDTO.getLastName());
 //        customerDTO.setEmail(customerDTO.getEmail());
 //        customerDTO.setPhone(customerDTO.getPhone());
-       CustomerDTO customerDTO=new CustomerDTO(customer);
-return customerDTO;
+        CustomerDTO customerDTO = new CustomerDTO(customer);
+        return customerDTO;
     }
 
     public void updateCustomer(Long id, CustomerDTO customerDTO) {
-        Customer customer=getCustomerById(id);
+        Customer customer = getCustomerById(id);
 
         //email var mı
         boolean isExistsEmail = customerRepository.existsByEmail(customerDTO.getEmail());
-        if(isExistsEmail && !customer.getEmail().equals(customerDTO.getEmail())  ){
-            throw new ConflictException("Email already exists by  "+customerDTO.getEmail());
+        if (isExistsEmail && !customer.getEmail().equals(customerDTO.getEmail())) {
+            throw new ConflictException("Email already exists by  " + customerDTO.getEmail());
         }
 
         customer.setName(customerDTO.getName());
@@ -67,5 +70,10 @@ return customerDTO;
         customer.setPhone(customerDTO.getPhone());
         customerRepository.save(customer);
 
+    }
+
+    public Page<Customer> getAllCustomersByPage(Pageable pageable) {
+        Page<Customer> customerPage = customerRepository.findAll(pageable);
+        return customerPage;
     }
 }

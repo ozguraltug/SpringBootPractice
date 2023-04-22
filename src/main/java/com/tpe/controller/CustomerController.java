@@ -77,11 +77,12 @@ public class CustomerController {
     //paginated list
     //6-Tüm customerları page page getirme->http://localhost:8080/customers/page=1&size=2&sort=id&direction=asc
     @GetMapping("/page")
-    public ResponseEntity<Page<Customer>> getAllCustomersPage(@RequestParam("page") int page,
-                                                              @RequestParam("size") int size,
-                                                              @RequestParam("sort") String prop,
-                                                              @RequestParam("direction") String direction) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction));
+    public ResponseEntity<Page<Customer>> getAllCustomersPage(@RequestParam("page") int page, //hangi sayfa
+                                                              @RequestParam("size") int size, //bir sayfada kaç adet
+                                                              @RequestParam("sort") String prop, //sıralama fieldı burada id
+                                                              @RequestParam("direction") Sort.Direction direction) //asc dsc
+    {
+        Pageable pageable = PageRequest.of(page, size,Sort.by(direction,prop));
         Page<Customer> customerPage = customerService.getAllCustomersByPage(pageable);
         return ResponseEntity.ok(customerPage);
 
