@@ -51,4 +51,21 @@ public class CustomerService {
        CustomerDTO customerDTO=new CustomerDTO(customer);
 return customerDTO;
     }
+
+    public void updateCustomer(Long id, CustomerDTO customerDTO) {
+        Customer customer=getCustomerById(id);
+
+        //email var mı
+        boolean isExistsEmail = customerRepository.existsByEmail(customerDTO.getEmail());
+        if(isExistsEmail && !customer.getEmail().equals(customerDTO.getEmail())  ){
+            throw new ConflictException("Email already exists by  "+customerDTO.getEmail());
+        }
+
+        customer.setName(customerDTO.getName());
+        customer.setLastName(customerDTO.getLastName());
+        customer.setEmail(customerDTO.getEmail());
+        customer.setPhone(customerDTO.getPhone());
+        customerRepository.save(customer);
+
+    }
 }
