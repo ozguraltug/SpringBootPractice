@@ -82,4 +82,9 @@ public class CustomerService {
        List <Customer> customers= customerRepository.findByName(name);
        return customers;
     }
+
+    public List<Customer> getCustomerByFullName(String name, String lastName) {
+        List <Customer> customers = customerRepository.findByNameAndLastName(name, lastName);
+        return customers;
+    }
 }

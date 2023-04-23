@@ -88,10 +88,19 @@ public class CustomerController {
         return ResponseEntity.ok(customerPage);
     }
 
-    //7.Name bilgisi ile customer getirme->http://localhost:8080/customers/name?name=Jack
+    //7.Name bilgisi ile customer getirme->http://localhost:8080/customers/query?name=Jack
     @GetMapping("/query")
     public ResponseEntity<List<Customer>> getCustomerByName(@RequestParam("name") String name) {
         List<Customer> customerList = customerService.getCustomerByName(name);
         return ResponseEntity.ok(customerList);
     }
-}
+
+    //8.Name ve lastName bilgisi ile customer getirme->http://localhost:8080/customers/fullquery?name=Jack&lastName=Sparrow
+    @GetMapping("/fullquery")
+    public ResponseEntity<List<Customer>> getCustomerByFullName(@RequestParam("name") String name,
+                                                                @RequestParam("lastName") String lastName) {
+        List<Customer> customerList = customerService.getCustomerByFullName(name, lastName);
+        return ResponseEntity.ok(customerList);
+    }
+
+    }
