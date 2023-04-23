@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "t_customer")
@@ -33,6 +35,12 @@ public class Customer {
     @Email //...@...
     @Column(unique = true, nullable = false)
     private String email;
+
     private String phone;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Product> products=new ArrayList<>();
+
+
 
 }
