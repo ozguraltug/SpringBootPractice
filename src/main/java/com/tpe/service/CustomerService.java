@@ -76,4 +76,10 @@ public class CustomerService {
         Page<Customer> customerPage = customerRepository.findAll(pageable);
         return customerPage;
     }
+
+
+    public List<Customer> getCustomerByName(String name) {
+       List <Customer> customers= customerRepository.findByName(name);
+       return customers;
+    }
 }

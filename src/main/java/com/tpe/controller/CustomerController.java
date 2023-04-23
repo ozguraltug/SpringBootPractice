@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -82,10 +83,15 @@ public class CustomerController {
                                                               @RequestParam("sort") String prop, //sıralama fieldı burada id
                                                               @RequestParam("direction") Sort.Direction direction) //asc dsc
     {
-        Pageable pageable = PageRequest.of(page, size,Sort.by(direction,prop));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
         Page<Customer> customerPage = customerService.getAllCustomersByPage(pageable);
         return ResponseEntity.ok(customerPage);
+    }
 
-
+    //7.Name bilgisi ile customer getirme->http://localhost:8080/customers/name?name=Jack
+    @GetMapping("/query")
+    public ResponseEntity<List<Customer>> getCustomerByName(@RequestParam("name") String name) {
+        List<Customer> customerList = customerService.getCustomerByName(name);
+        return ResponseEntity.ok(customerList);
     }
 }
