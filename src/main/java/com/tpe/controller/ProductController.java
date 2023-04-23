@@ -20,14 +20,14 @@ public class ProductController {
     private ProductService productService;
 
     //1.product oluşturma kaydetme > http://localhost:8080/product/save
-@PostMapping("/save")
-    public ResponseEntity<String> createProduct(@Valid @RequestBody ProductDTO productDTO){
-    productService.saveProduct(productDTO);
-    return new ResponseEntity<>("Product created successfully", HttpStatus.CREATED);
+    @PostMapping("/save")
+    public ResponseEntity<String> createProduct(@Valid @RequestBody ProductDTO productDTO) {
+        productService.saveProduct(productDTO);
+        return new ResponseEntity<>("Product created successfully", HttpStatus.CREATED);
 
-}
+    }
 
-//Ödev 2.Tüm productları listeleme > http://localhost:8080/products
+    //Ödev 2.Tüm productları listeleme > http://localhost:8080/products
     //3.id ile product getirme > http://localhost:8080/products/1
 
 }
