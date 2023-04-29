@@ -14,9 +14,10 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private CustomerService customerService;
+
     public void saveProduct(ProductDTO productDTO) {
-        Product product=new Product();
-        Customer customer=customerService.getCustomerById(productDTO.getCustomerId());
+        Product product = new Product();
+        Customer customer = customerService.getCustomerById(productDTO.getCustomerId());
         product.setProductName(productDTO.getProductName());
         product.setBrand(productDTO.getBrand());
         product.setPrice(productDTO.getPrice());

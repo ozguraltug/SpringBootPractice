@@ -20,6 +20,12 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue annotation'ı, birincil anahtar alanının değerinin
+    // nasıl oluşturulacağını belirlemek için kullanılır.
+    // Örneğin, @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // kullanılarak, birincil anahtar alanı bir kimlik sütunu
+    // (identity column) olarak yapılandırılmış bir veritabanında
+    // otomatik olarak oluşturulur.
     private Long id;
 
     @NotNull(message = "First name can not be null")//null olamaz ama "" olabilir veya " " olabilir
@@ -27,7 +33,7 @@ public class Customer {
     @NotEmpty //null olamaz empty olamaz boşluk olabilir
     @Size(min = 2, max = 50)
     private String name;
-    @NotNull(message = "Las name can not be null")
+    @NotNull(message = "Last name can not be null")
     @NotBlank(message = "Last name can not be space")
     @Size(min = 2, max = 50)
     private String lastName;

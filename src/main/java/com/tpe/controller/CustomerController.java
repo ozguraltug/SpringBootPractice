@@ -52,14 +52,16 @@ public class CustomerController {
     }
 
 
-    //ODEV2:id ile customer getirme->http://localhost:8080/customers/Custom?id=1
+    //ODEV2:
+    //5-id ile customer getirme->http://localhost:8080/customers/Custom?id=1
 
-    @GetMapping("/custom")
+    @GetMapping("/custom") //önce dto suz yap sonra dto yaz
     public ResponseEntity<CustomerDTO> getCustomerDTOById2(@RequestParam("id") Long id) {
         CustomerDTO customerDTO = customerService.getCustomerDTOById(id);
         return ResponseEntity.ok(customerDTO);
     }
-    //ODEV2:id ile customer silme->http://localhost:8080/customers/custom?id=1
+    //ODEV2:
+    // 6-id ile customer silme->http://localhost:8080/customers/custom?id=1
     //Customer is deleted successfully mesajı dönsün
 
     @DeleteMapping("/custom")
@@ -68,7 +70,7 @@ public class CustomerController {
         return ResponseEntity.ok("Customer is deleted successfully");
     }
 
-    //task 5: id ile customerı update etme->http://localhost:8080/customers/update/1
+    //task 7: id ile customerı update etme->http://localhost:8080/customers/update/1
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateCustomer(@PathVariable("id") Long id, @RequestBody CustomerDTO customerDTO) {
         customerService.updateCustomer(id, customerDTO);
@@ -113,4 +115,4 @@ public class CustomerController {
     //Ödev:Requestle gelen kelime name veya lastname de geçen customerları getir ->http://localhost:8080/customers/search?word=Ja
 
 
-    }
+}
