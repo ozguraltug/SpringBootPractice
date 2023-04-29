@@ -49,11 +49,11 @@ public class CustomerService {
 
     public CustomerDTO getCustomerDTOById(Long id) {
         Customer customer = getCustomerById(id);
-        CustomerDTO customerDTO=new CustomerDTO();
-        customerDTO.setName(customer.getName());
-        customerDTO.setLastName(customerDTO.getLastName());
-        customerDTO.setEmail(customerDTO.getEmail());
-        customerDTO.setPhone(customerDTO.getPhone());
+//        CustomerDTO customerDTO=new CustomerDTO();
+//        customerDTO.setName(customer.getName());
+//        customerDTO.setLastName(customerDTO.getLastName());
+//        customerDTO.setEmail(customerDTO.getEmail());
+//        customerDTO.setPhone(customerDTO.getPhone());
         CustomerDTO customerDTO = new CustomerDTO(customer);
         return customerDTO;
     }
